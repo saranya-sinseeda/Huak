@@ -1,0 +1,32 @@
+import React, { useEffect, useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import LotteView from 'lottie-react-native'
+
+import Preload from './pages/Preload'
+import Timeline from './pages/Timeline'
+
+
+
+const Stack = createNativeStackNavigator();
+
+function App() {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false) 
+    }, 1000)
+  }, [])
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Index'>
+        <Stack.Screen name="Preload" component={Preload} />
+        <Stack.Screen name="Timeline" component={Timeline} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
